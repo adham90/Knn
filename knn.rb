@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-
-
 class Knn
 	def initialize()
 	  @data           = []
@@ -25,7 +23,7 @@ class Knn
 		nearest_neighbors = []
 
 		@data.each_with_index do |instance, position|
-			distance = euclidean_distance(instance, unkown_instance)
+			distance = cosin_similarity(instance, unkown_instance)
 			next if instance == unkown_instance
 
 			if nearest_neighbors.length < k
@@ -91,5 +89,30 @@ class Knn
 		end
 		Math.sqrt(total_distance)
 	end
+
+	def cosin_similarity(instance1, instance2)
+		dot_product = 0.0
+		zip_sparse_arrays(instance1, instance2) do |value1, value2|
+			dot_product += value1 * value2
+		end
+		magnitude1 = magnitude(instance1)
+		magnitude2 = magnitude(instance2)
+
+		if magnitude1 == 0 || magnitude2 == 0
+			1
+		else
+			1 - dot_product / (magnitude1 * magnitude2)
+		end
+	end
+
+	def magnitude(instance)
+		total = 0.0
+		instance.each do |position_and_value|
+			position, value = position_and_value
+			total += value ** 2
+		end
+		total
+	end
+
 end 
 

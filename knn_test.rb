@@ -7,11 +7,11 @@ data2 = [[0, 0],[1, 0]]
 data3 = [[0, 4],[1, 5]]
 data4 = [[0, 6],[1, 6]]
 
-1000.times do
-	r = Random.new()
-	data = [[r.rand(50), r.rand(1000)],[r.rand(50), r.rand(1000)]]
-	knn.add_instance(data, "#{r.rand(50)}, #{r.rand(50)}")
-end
+# 1000.times do
+# 	r = Random.new()
+# 	data = [[r.rand(50), r.rand(1000)],[r.rand(50), r.rand(1000)]]
+# 	knn.add_instance(data, "#{r.rand(50)}, #{r.rand(50)}")
+# end
 
 knn.add_instance(data1, "1, 0")
 knn.add_instance(data2, "0, 0")
